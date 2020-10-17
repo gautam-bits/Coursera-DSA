@@ -15,6 +15,7 @@ someOtherfoler/
 *.so
 *.bin
 *.prob
+*.cpp.bin
 
 # Packages #
 ############
