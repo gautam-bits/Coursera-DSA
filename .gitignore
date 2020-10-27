@@ -1,6 +1,7 @@
 # Don't track content of these folders
 node_modules/
 someOtherfoler/
+/
 
 
 # Compiled source #
@@ -16,7 +17,7 @@ someOtherfoler/
 *.bin
 *.prob
 *.cpp.bin
-*.java
+
 
 # Packages #
 ############

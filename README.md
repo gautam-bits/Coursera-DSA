@@ -7,3 +7,5 @@ This is a self one week challenge.<br/>
 Try to complete this course before 24th october.<br/>
 You got this boii.
 
+#### All the solutins are currently only in cpp.
+

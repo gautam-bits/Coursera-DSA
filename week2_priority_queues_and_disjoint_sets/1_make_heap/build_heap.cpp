@@ -29,22 +29,51 @@ class HeapBuilder {
       cin >> data_[i];
   }
 
+  int Parent(int i) { return (i-1)/2; }
+
+  int LeftChild(int i) { return (i<<1) + 1; }
+
+  int RightChild(int i) { return (i<<1) + 2; } 
+
+  void ShiftUp(int i) {              //O(logn)
+    if(i > 0 && data_[Parent(i)] > data_[i]) {
+      swap(data_[Parent(i)],data_[i]);
+      ShiftUp(Parent(i));
+    }
+  }
+
+  void ShiftDown(int i) {          //O(logn)  //with print overload
+    int minidx = i;
+
+    int l = LeftChild(i);
+    int r = RightChild(i);
+
+    if(l < data_.size() && data_[l] < data_[minidx] ){
+      minidx = l;
+    }
+
+    if(r < data_.size() && data_[r] < data_[minidx] ){
+      minidx = r;
+    }
+
+    if(i != minidx){
+      swap(data_[i],data_[minidx]);
+      swaps_.push_back(make_pair(i,minidx));
+      ShiftDown(minidx);
+
+    }
+
+
+  }
+
   void GenerateSwaps() {
     swaps_.clear();
-    // The following naive implementation just sorts 
-    // the given sequence using selection sort algorithm
-    // and saves the resulting sequence of swaps.
-    // This turns the given array into a heap, 
-    // but in the worst case gives a quadratic number of swaps.
-    //
-    // TODO: replace by a more efficient implementation
-    for (int i = 0; i < data_.size(); ++i)
-      for (int j = i + 1; j < data_.size(); ++j) {
-        if (data_[i] > data_[j]) {
-          swap(data_[i], data_[j]);
-          swaps_.push_back(make_pair(i, j));
-        }
-      }
+
+    int n = data_.size();
+
+    for(int i = n/2 - 1; i >=0;i--){
+      ShiftDown(i);
+    }
   }
 
  public:
